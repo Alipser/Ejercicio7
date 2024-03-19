@@ -1,16 +1,19 @@
 package Database;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.Statement;
+import java.sql.*;
+
 
 public class conectionDB {
 
     public static Connection databaseConnection = null;
     public static Statement stmt = null;
 
+    public static PreparedStatement pstm = null;
+
     public static Connection connectToDataBase(){
      try{
+
+
          if (databaseConnection == null){
              String user = "root";
              String pass = "Rlwl2023.";
@@ -64,6 +67,56 @@ public class conectionDB {
 
         }
     }
+
+
+    public static void createTableAuthors(){
+        try{
+            String query = "use Ejercicio7;";
+            pstm = databaseConnection.prepareStatement(query);
+            pstm.execute();
+            System.out.println("using Ejercicio7");
+
+            System.out.println("Creating Atuhors Table");
+             query = "CREATE TABLE IF NOT EXISTS Authors ( id int auto_increment, name varchar(30), nationality varchar(30), CONSTRAINT PK_IdAuthors PRIMARY KEY (id))";
+            pstm = databaseConnection.prepareStatement(query);
+            pstm.execute();
+            pstm.close();
+
+        }catch (Exception e){
+            System.out.println("Error" + e.getMessage());
+        }
+    }
+
+
+    public static void createTableBooks(){
+        try{
+            String query = "use Ejercicio7;";
+            pstm = databaseConnection.prepareStatement(query);
+            pstm.execute();
+            System.out.println("using Ejercicio7");
+
+            System.out.println("Creating Book Table");
+            query = "CREATE TABLE IF NOT EXISTS Books ( \n" +
+                    "id int AUTO_INCREMENT,  \n" +
+                    "idAuthor int, title VARCHAR(30), \n" +
+                    "yearPublication VARCHAR(30), \n" +
+                    "price FLOAT, \n" +
+                    "CONSTRAINT PK_IdBooks PRIMARY KEY (id), \n" +
+                    "constraint FK_AuthorId foreign key (idAuthor) \n" +
+                    "REFERENCES Authors(id)\n" +
+                    ");";
+            pstm = databaseConnection.prepareStatement(query);
+            pstm.execute();
+            pstm.close();
+
+        }catch (Exception e){
+            System.out.println("Error" + e.getMessage());
+        }
+    }
+
+
+
+
 
 
 }

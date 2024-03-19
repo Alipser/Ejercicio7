@@ -1,15 +1,25 @@
 package Entity;
 
 public class Author {
-private int id;
-private String title;
 
-private String yearPublication;
+    Author(){
 
-private Double price;
+    };
+    private int id;
 
-private int authorID;
+    private String name;
 
+    private String nationality;
+
+    private int authorId;
+
+    public int getAuthorId() {
+        return authorId;
+    }
+
+    public void setAuthorId(int authorId) {
+        this.authorId = authorId;
+    }
 
     public int getId() {
         return id;
@@ -19,46 +29,29 @@ private int authorID;
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getYearPublication() {
-        return yearPublication;
+    public String getNationality() {
+        return nationality;
     }
 
-    public void setYearPublication(String yearPublication) {
-        this.yearPublication = yearPublication;
-    }
-
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-
-    public int getAuthorID() {
-        return authorID;
-    }
-
-    public void setAuthorID(int authorID) {
-        this.authorID = authorID;
+    public void setNationality(String nationality) {
+        this.nationality = nationality;
     }
 
     @Override
     public String toString() {
-        return "Author{" +
+        return "Books{" +
                 "id=" + id +
-                ", title='" + title + '\'' +
-                ", yearPublication='" + yearPublication + '\'' +
-                ", price=" + price +
-                ", authorID=" + authorID +
+                ", name='" + name + '\'' +
+                ", nationality='" + nationality + '\'' +
+                ", authorId=" + authorId +
                 '}';
     }
 }
