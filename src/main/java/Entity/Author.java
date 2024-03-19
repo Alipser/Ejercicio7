@@ -2,24 +2,22 @@ package Entity;
 
 public class Author {
 
-    Author(){
-
+    public Author(){
     };
+
+    public Author(int id, String name, String nationality) {
+        this.id = id;
+        this.name = name;
+        this.nationality = nationality;
+
+    }
+
     private int id;
 
     private String name;
 
     private String nationality;
 
-    private int authorId;
-
-    public int getAuthorId() {
-        return authorId;
-    }
-
-    public void setAuthorId(int authorId) {
-        this.authorId = authorId;
-    }
 
     public int getId() {
         return id;
@@ -51,7 +49,6 @@ public class Author {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", nationality='" + nationality + '\'' +
-                ", authorId=" + authorId +
                 '}';
     }
 }
