@@ -1,5 +1,7 @@
 package Model;
 
+import Entity.Author;
+
 import java.util.List;
 
 public interface IsCrudable {
@@ -11,6 +13,6 @@ public interface IsCrudable {
 
     public Boolean update(Object objeto);
 
-    public Boolean delete(Object delete);
+    public Boolean delete(Object objeto);
 
 }
