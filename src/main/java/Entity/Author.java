@@ -3,7 +3,7 @@ package Entity;
 public class Author {
 
     public Author(){
-    };
+    }
 
     public Author(int id, String name, String nationality) {
         this.id = id;

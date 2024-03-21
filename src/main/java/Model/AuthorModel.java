@@ -19,7 +19,7 @@ public class AuthorModel implements IsCrudable {
             pstm.execute();
             query = "SELECET * FROM Authors ";
             pstm = databaseConnection.prepareStatement(query);
-            ResultSet resultadoSet = (ResultSet) pstm.executeQuery();
+            ResultSet resultadoSet = pstm.executeQuery();
 
             while (resultadoSet.next()) {
                 Author addableAuthor = new Author();
@@ -35,7 +35,7 @@ public class AuthorModel implements IsCrudable {
             System.out.println("ERROR " + e.getMessage());
         }
         return authorsList;
-    };
+    }
 
     @Override
     public Object getbyId(int id) {
@@ -53,12 +53,12 @@ public class AuthorModel implements IsCrudable {
             addableAuthor.setNationality(resultadoSet.getString("nationality"));
             pstm.close();
             databaseConnection.close();
-            return (Object) addableAuthor;
+            return addableAuthor;
         } catch (Exception e) {
             System.out.println("ERROR " + e.getMessage());
             return null;
         }
-    };
+    }
 
     @Override
     public Object insert(Object objeto) {
@@ -73,16 +73,14 @@ public class AuthorModel implements IsCrudable {
             pstm = databaseConnection.prepareStatement(query);
             pstm.executeQuery();
             pstm.close();
-            databaseConnection.close();
-            
-            return objeto;
-            
+            databaseConnection.close();            
+            return objeto;            
         } catch (Exception e) {
             System.out.println("ERROR " + e.getMessage());
             return null;
         }
         
-    };
+    }
 
     @Override
     public Boolean update(Object objeto) {
@@ -102,7 +100,7 @@ public class AuthorModel implements IsCrudable {
             return null;
         }
         
-    };
+    }
 
     @Override
     public Boolean delete(Object objeto) {

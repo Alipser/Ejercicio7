@@ -16,7 +16,7 @@ public class conectionDB {
 
          if (databaseConnection == null){
              String user = "root";
-             String pass = "";
+             String pass = "Rlwlw2023.";
              String url ="jdbc:mysql://localhost:3306/";
              databaseConnection= DriverManager.getConnection(url, user, pass);
              System.out.println("te has conectado");

@@ -8,7 +8,18 @@ private String yearPublication;
 
 private Double price;
 
-private int authorID;
+    public Book(){
+    }
+    public Book(int id, String title, String yearPublication, Double price, int authorID) {
+        this.id = id;
+        this.title = title;
+        this.yearPublication = yearPublication;
+        this.price = price;
+        this.authorID = authorID;
+    }
+    private int authorID;
+
+    private Author author;
 
 
     public int getId() {
@@ -51,6 +62,14 @@ private int authorID;
         this.authorID = authorID;
     }
 
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
+    }
+
     @Override
     public String toString() {
         return "Author{" +
@@ -58,7 +77,7 @@ private int authorID;
                 ", title='" + title + '\'' +
                 ", yearPublication='" + yearPublication + '\'' +
                 ", price=" + price +
-                ", authorID=" + authorID +
+                ", author=" + authorID +
                 '}';
     }
 }
