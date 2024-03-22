@@ -2,6 +2,7 @@ package MenuUI;
 
 import javax.swing.*;
 import static  MenuUI.AuthorMenu.*;
+import static  MenuUI.BookMenu.*;
 
 public class menuP {
 
@@ -16,6 +17,7 @@ public class menuP {
         System.out.println(selection);
         if (selection == "Books"){
             System.out.println("books");
+            showMenuBookMenu();
 
         }else{
             System.out.println("Author");
