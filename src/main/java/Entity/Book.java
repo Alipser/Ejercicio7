@@ -72,7 +72,7 @@ private Double price;
 
     @Override
     public String toString() {
-        return "Author{" +
+        return "Book{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", yearPublication='" + yearPublication + '\'' +

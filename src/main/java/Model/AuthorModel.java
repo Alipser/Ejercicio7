@@ -9,6 +9,8 @@ import static Database.conectionDB.*;
 
 public class AuthorModel implements IsCrudable {
 
+
+    public AuthorModel(){}
     @Override
     public List<Object> getAll() {
         List<Object> authorsList = new ArrayList<>();

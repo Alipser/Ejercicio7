@@ -10,14 +10,13 @@ import java.util.List;
 
 
 import static Database.conectionDB.*;
-import static Database.conectionDB.pstm;
+
 
 public class BookModel implements IsCrudable{
 
 
-    PreparedStatement pstm = null;
 
-    public List<Object> getAll(){
+    public  List<Object> getAll(){
         List<Object> listBook = new ArrayList<>();
 
         try {
@@ -42,6 +41,7 @@ public class BookModel implements IsCrudable{
             databaseConnection.close();
         }catch (Exception e){
             System.out.println("Error Getting books :  " + e.getMessage());
+            return null;
         }
         return listBook;
     }

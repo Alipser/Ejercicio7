@@ -10,6 +10,8 @@ public class conectionDB {
 
     public static PreparedStatement pstm = null;
 
+
+
     public static Connection connectToDataBase(){
      try{
 
@@ -50,12 +52,12 @@ public class conectionDB {
         try {
             System.out.println("Creating Schema...");
             stmt = databaseConnection.createStatement();
-            String dbName = nombreSchema; // or get it from command line
-            String sql = "CREATE SCHEMA " + dbName;
+            // or get it from command line
+            String sql = "CREATE SCHEMA " + nombreSchema;
             stmt.executeUpdate(sql);
             System.out.println("Schema created successfully...");
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         } finally {
             try {
                 if (stmt != null) {
