@@ -30,7 +30,7 @@ public class BookMenu {
 
                     break;
                 case 4:
-
+                    bookController.crearLibro();
                     break;
                 case 5:
                     JOptionPane.showInternalMessageDialog(null, "You have exit Succesfully");

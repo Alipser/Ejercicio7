@@ -22,6 +22,14 @@ private Author author;
         this.authorID = authorID;
     }
 
+    public Book( String title, String yearPublication, Double price, int authorID) {
+        this.id = id;
+        this.title = title;
+        this.yearPublication = yearPublication;
+        this.price = price;
+        this.authorID = authorID;
+    }
+
 
 
     public int getId() {

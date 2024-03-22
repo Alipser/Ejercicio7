@@ -110,15 +110,14 @@ public class BookModel implements IsCrudable{
             String query = "USE Ejercicio7";
             pstm = databaseConnection.prepareStatement(query);
             pstm.execute();
-            query = "INSERT INTO Authors (idAuthor, title, yearPublication, price) VALUES (? , ? , ? , ?)";
+            query = "INSERT INTO Books(idAuthor, title, yearPublication, price) VALUES(? , ? , ? , ?)";
             pstm = databaseConnection.prepareStatement(query);
             pstm.setInt(1,libro.getAuthorID());
+            System.out.println(libro.getAuthorID());
             pstm.setString(2, libro.getTitle());
             pstm.setString(3, libro.getYearPublication());
             pstm.setDouble(4, libro.getPrice());
-            pstm.executeQuery();
-            pstm.close();
-            databaseConnection.close();
+            pstm.executeUpdate();
         }catch (Exception e){
             System.out.println("Error getting a book by Id : "  + e.getMessage());
         }
