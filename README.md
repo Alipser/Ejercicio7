@@ -1,0 +1,1 @@
+Al crear las bases de datos y schema desde JDBC no me acanzo el tiempo de preparar una abse de dato remota por ello recomiendo crearla en local ejecutando DBmain en el paquete Dtabase antes de ejecutar El main por primera vez
