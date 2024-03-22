@@ -6,19 +6,41 @@ import javax.swing.*;
 
 public class AuthorMenu {
 
-    public AuthorController autorController = new AuthorController();
+    static public AuthorController autorController = new AuthorController();
 
     public static void showMenuAutores (){
-        String opcionesMenu = " 1. Show Authors \n 2. Update Author. \n 3. Delete Author. \n 4.Create new Author.";
+        String opcionesMenu = " 1. Show Authors \n 2. Show Author By Id. \n 3. Delete Author. \n 4.Create new Author. \n 5.Exit";
         int select = 0;
         try {
-            while (select <0 || select >5 ){
+            while (select <1 || select >5 ){
                 select = Integer.parseInt(JOptionPane.showInputDialog(null, opcionesMenu));
+                if(select <1 || select >5 ){
+                    JOptionPane.showMessageDialog(null, "Please Enter a number between 1 and 5");
+                }
             }
 
+            switch (select){
+                case 1:
+                    autorController.listarAutores();
+                    break;
+                case 2:
+                    autorController.buscarAutorById();
+                    break;
+                case 3:
+                    autorController.deleteAutor();
+                    break;
+                case 4:
+                    autorController.crearAutor();
+                    break;
+                case 5:
+                    JOptionPane.showInternalMessageDialog(null, "You have exit Succesfully");
+                    return;
 
+            }
+
+            showMenuAutores ();
         }catch (Exception e){
-            JOptionPane.showMessageDialog(null, "Solo son permitidos numeros en el input");
+            JOptionPane.showMessageDialog(null, "Only number characters are allowed" + e.getMessage());
             showMenuAutores();
         }
 

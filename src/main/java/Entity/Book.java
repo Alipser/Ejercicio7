@@ -8,6 +8,10 @@ private String yearPublication;
 
 private Double price;
 
+private int authorID;
+
+private Author author;
+
     public Book(){
     }
     public Book(int id, String title, String yearPublication, Double price, int authorID) {
@@ -17,9 +21,7 @@ private Double price;
         this.price = price;
         this.authorID = authorID;
     }
-    private int authorID;
 
-    private Author author;
 
 
     public int getId() {

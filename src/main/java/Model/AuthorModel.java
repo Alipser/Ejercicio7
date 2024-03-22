@@ -2,6 +2,7 @@ package Model;
 
 import Entity.Author;
 
+import javax.swing.*;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +20,7 @@ public class AuthorModel implements IsCrudable {
             String query = "use Ejercicio7";
             pstm = databaseConnection.prepareStatement(query);
             pstm.execute();
-            query = "SELECET * FROM Authors ";
+            query = "SELECT * FROM Authors ";
             pstm = databaseConnection.prepareStatement(query);
             ResultSet resultadoSet = pstm.executeQuery();
 
@@ -30,8 +31,7 @@ public class AuthorModel implements IsCrudable {
                 addableAuthor.setNationality(resultadoSet.getString("nationality"));
                 authorsList.add(addableAuthor);
             }
-            pstm.close();
-            databaseConnection.close();
+
 
         } catch (Exception e) {
             System.out.println("ERROR " + e.getMessage());
@@ -42,19 +42,20 @@ public class AuthorModel implements IsCrudable {
     @Override
     public Object getbyId(int id) {
         try {
-            connectToDataBase();
-            String query = "use Ejercicio7";
+            String query = "use Ejercicio7;";
             pstm = databaseConnection.prepareStatement(query);
             pstm.execute();
-            query = "SELECT * FROM Authors WHERE id = " + id;
+            System.out.println("paso");
+            query = "SELECT * FROM Authors WHERE id = ?";
             pstm = databaseConnection.prepareStatement(query);
+            pstm.setInt(1,id);
             ResultSet resultadoSet = (ResultSet) pstm.executeQuery();
-            Author addableAuthor = new Author();
-            addableAuthor.setId(resultadoSet.getInt("id"));
-            addableAuthor.setName(resultadoSet.getString("name"));
-            addableAuthor.setNationality(resultadoSet.getString("nationality"));
-            pstm.close();
-            databaseConnection.close();
+            Author addableAuthor = addableAuthor= new Author();
+            while (resultadoSet.next()) {
+                addableAuthor.setId(resultadoSet.getInt("id"));
+                addableAuthor.setName(resultadoSet.getString("name"));
+                addableAuthor.setNationality(resultadoSet.getString("nationality"));
+            }
             return addableAuthor;
         } catch (Exception e) {
             System.out.println("ERROR " + e.getMessage());
@@ -67,15 +68,15 @@ public class AuthorModel implements IsCrudable {
         Author objeto1 = (Author) objeto;
         try {
             connectToDataBase();
-            String query = "use Ejercio7";
+            String query = "use Ejercicio7";
             pstm = databaseConnection.prepareStatement(query);
             pstm.execute();
-            query = "INSERT INTO Authors ( name, nationality) VALUES (" + objeto1.getId() + "," + objeto1.getName() +"," + objeto1.getNationality() + " )";
+            query = "INSERT INTO Authors(name, nationality) VALUES(?, ?);";
             System.out.println(query);
             pstm = databaseConnection.prepareStatement(query);
-            pstm.executeQuery();
-            pstm.close();
-            databaseConnection.close();            
+            pstm.setString(1, objeto1.getName());
+            pstm.setString(2, objeto1.getNationality());
+            pstm.execute();
             return objeto;            
         } catch (Exception e) {
             System.out.println("ERROR " + e.getMessage());
@@ -112,11 +113,11 @@ public class AuthorModel implements IsCrudable {
             String query = "use Ejercicio7";
             pstm = databaseConnection.prepareStatement(query);
             pstm.execute();
-            query = "DELETE * FROM Authors WHERE id = " + id;
+            query = "DELETE FROM Authors WHERE id = ?;";
             pstm = databaseConnection.prepareStatement(query);
-            pstm.executeQuery();
-            pstm.close();
-            databaseConnection.close();
+            pstm.setInt(1,id);
+            pstm.execute();
+            JOptionPane.showMessageDialog(null,"Has been eliminated");
             return true;
         } catch (Exception e) {
             System.out.println("ERROR " + e.getMessage());
