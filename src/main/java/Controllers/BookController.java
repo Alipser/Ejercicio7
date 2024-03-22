@@ -3,6 +3,7 @@ import Entity.Book;
 import Model.AuthorModel;
 import Model.BookModel;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,17 +21,19 @@ public class BookController {
            for (Object temp: listaLibros){
                Book libro  = (Book) temp;
                stringBooks.append(libro.toString()).append("\n");
+
            }
         }else {
             stringBooks.append("There are no Books to show");
         }
+        JOptionPane.showMessageDialog(null,stringBooks);
     }
 
 
     public void listarLibrosAuthor(){
         StringBuilder stringBooks = new StringBuilder();
 
-        List<Object>  listaLibros =  bookModel.getAll();
+        List<Object>  listaLibros =  bookModel.getAllWithAuthors();
         if (listaLibros != null && !listaLibros.isEmpty()){
             stringBooks = new StringBuilder("Books in Inventory:  \n");
             for (Object temp: listaLibros){
@@ -40,6 +43,7 @@ public class BookController {
         }else {
             stringBooks.append("There are no Books to show");
         }
+        JOptionPane.showMessageDialog(null,stringBooks);
     }
 
     public void crearLibro(){

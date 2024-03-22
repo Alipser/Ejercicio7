@@ -70,8 +70,6 @@ public class BookModel implements IsCrudable{
                 addableBook.setAuthor(addableAuthor);
                 listBook.add(addableBook);
             }
-            pstm.close();
-            databaseConnection.close();
         }catch (Exception e){
             System.out.println("Error Getting books :  " + e.getMessage());
         }
