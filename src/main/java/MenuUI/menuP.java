@@ -9,6 +9,7 @@ public class menuP {
 
 
     public static void showMenu(){
+        JOptionPane.showMessageDialog(null, "No olvide correr en local la base de datos y ejecutar el main de Database");
         JDialog.setDefaultLookAndFeelDecorated(true);
         Object[] selectionValues = { "Books", "Authors"};
         String initialSelection = "Books";
@@ -23,7 +24,5 @@ public class menuP {
             System.out.println("Author");
             showMenuAutores();
         }
-
-
     }
 }

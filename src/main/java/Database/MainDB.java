@@ -13,7 +13,6 @@ public class MainDB {
 
         closeconnection();
         connectToDataBase();
-        createSchemaInConection("Ejercicio7");
         createTableAuthors();
         createTableBooks();
         closeconnection();
