@@ -88,7 +88,42 @@ public class BookController {
 
     }
 
+    public void deleteLibro(){
+        this.listarLibros();
+        int id = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter ID to Eliminate"));
+        int select = JOptionPane.showConfirmDialog(null, "Are you sure deleting this book?");
+        if (select ==0){
+            boolean isDeleted = bookModel.delete(id);
+            if (isDeleted){
+                JOptionPane.showMessageDialog(null, "The Book has been eliminated succesfully");
+            }else{
+                JOptionPane.showMessageDialog(null, "Something was wrong eliminating the book with id =" + id + ". Check id and try again");
+            }
+
+        }
+
+
+        }
+
+    public void findBookById(){
+        listarLibros();
+        int id = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter ID to Search"));
+        Book founded = (Book) bookModel.getbyId(id);
+        if (founded != null && founded.getTitle() != null ){
+            JOptionPane.showMessageDialog(null, founded.toString());
+        } else if (founded.getTitle()== null) {
+            JOptionPane.showMessageDialog(null, "id =" + id + " Not Exist. Check id and try again");
+        } else{
+            JOptionPane.showMessageDialog(null, "id =" + id + " Not founded. Check id and try again");
+        }
+
+
+
+    }
+
 }
+
+
 
 
 

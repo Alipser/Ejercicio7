@@ -19,8 +19,9 @@ public class menuP {
         if (selection == "Books"){
             System.out.println("books");
             showMenuBookMenu();
-
-        }else{
+        } else if (selection == null) {
+            return;
+        } else{
             System.out.println("Author");
             showMenuAutores();
         }

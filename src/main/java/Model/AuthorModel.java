@@ -17,10 +17,7 @@ public class AuthorModel implements IsCrudable {
         List<Object> authorsList = new ArrayList<>();
         try {
             connectToDataBase();
-            String query = "use Ejercicio7";
-            pstm = databaseConnection.prepareStatement(query);
-            pstm.execute();
-            query = "SELECT * FROM Authors ";
+            String query = "SELECT * FROM authors ";
             pstm = databaseConnection.prepareStatement(query);
             ResultSet resultadoSet = pstm.executeQuery();
 
@@ -42,11 +39,8 @@ public class AuthorModel implements IsCrudable {
     @Override
     public Object getbyId(int id) {
         try {
-            String query = "use Ejercicio7;";
-            pstm = databaseConnection.prepareStatement(query);
-            pstm.execute();
-            System.out.println("paso");
-            query = "SELECT * FROM Authors WHERE id = ?";
+            connectToDataBase();
+            String query = "SELECT * FROM authors WHERE id = ?";
             pstm = databaseConnection.prepareStatement(query);
             pstm.setInt(1,id);
             ResultSet resultadoSet = (ResultSet) pstm.executeQuery();
@@ -68,10 +62,7 @@ public class AuthorModel implements IsCrudable {
         Author objeto1 = (Author) objeto;
         try {
             connectToDataBase();
-            String query = "use Ejercicio7";
-            pstm = databaseConnection.prepareStatement(query);
-            pstm.execute();
-            query = "INSERT INTO Authors(name, nationality) VALUES(?, ?);";
+            String query = "INSERT INTO authors(name, nationality) VALUES(?, ?);";
             System.out.println(query);
             pstm = databaseConnection.prepareStatement(query);
             pstm.setString(1, objeto1.getName());
@@ -90,10 +81,7 @@ public class AuthorModel implements IsCrudable {
         Author prueba = (Author) objeto;
         try {
             connectToDataBase();
-            String query = "use Ejercio7";
-            pstm = databaseConnection.prepareStatement(query);
-            pstm.execute();
-            query = "UPDATE Authors SET id =" + prueba.getId() + "," + "name = " + prueba.getName() +"," + "nationality = " + prueba.getNationality() + "WHERE id = " + prueba.getId();
+            String query = "UPDATE authors SET id =" + prueba.getId() + "," + "name = " + prueba.getName() +"," + "nationality = " + prueba.getNationality() + "WHERE id = " + prueba.getId();
             System.out.println(query);
             pstm = databaseConnection.prepareStatement(query);
             pstm.executeQuery();
@@ -110,10 +98,7 @@ public class AuthorModel implements IsCrudable {
         Integer id = (Integer) objeto;
         try {
             connectToDataBase();
-            String query = "use Ejercicio7";
-            pstm = databaseConnection.prepareStatement(query);
-            pstm.execute();
-            query = "DELETE FROM Authors WHERE id = ?;";
+            String query = "DELETE FROM authors WHERE id = ?;";
             pstm = databaseConnection.prepareStatement(query);
             pstm.setInt(1,id);
             pstm.execute();

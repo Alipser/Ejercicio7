@@ -4,6 +4,8 @@ import Controllers.AuthorController;
 
 import javax.swing.*;
 
+import static MenuUI.menuP.showMenu;
+
 public class AuthorMenu {
 
     static public AuthorController autorController = new AuthorController();
@@ -33,7 +35,7 @@ public class AuthorMenu {
                     autorController.crearAutor();
                     break;
                 case 5:
-                    JOptionPane.showInternalMessageDialog(null, "You have exit Succesfully");
+                    showMenu();
                     return;
 
             }

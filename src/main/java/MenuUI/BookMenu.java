@@ -1,4 +1,5 @@
 package MenuUI;
+import static MenuUI.menuP.*;
 
 import Controllers.AuthorController;
 import Controllers.BookController;
@@ -24,16 +25,18 @@ public class BookMenu {
                     bookController.listarLibrosAuthor();
                     break;
                 case 2:
+                    bookController.findBookById();
 
                     break;
                 case 3:
+                    bookController.deleteLibro();
 
                     break;
                 case 4:
                     bookController.crearLibro();
                     break;
                 case 5:
-                    JOptionPane.showInternalMessageDialog(null, "You have exit Succesfully");
+                    showMenu();
                     return;
 
             }

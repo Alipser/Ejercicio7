@@ -21,12 +21,8 @@ public class BookModel implements IsCrudable{
 
         try {
             connectToDataBase();
-            String query = "USE Ejercicio7";
+            String query ="SELECT * From books;";
             pstm = databaseConnection.prepareStatement(query);
-            pstm.execute();
-            query ="SELECT * From ?;";
-            pstm = databaseConnection.prepareStatement(query);
-            pstm.setString(1, "Books");
             ResultSet dataSet = pstm.executeQuery();
             while (dataSet.next()){
                 Book addableBook = new Book();
@@ -37,8 +33,6 @@ public class BookModel implements IsCrudable{
                 addableBook.setPrice(dataSet.getDouble("price"));
                 listBook.add(addableBook);
             }
-            pstm.close();
-            databaseConnection.close();
         }catch (Exception e){
             System.out.println("Error Getting books :  " + e.getMessage());
             return null;
@@ -50,10 +44,7 @@ public class BookModel implements IsCrudable{
         List<Object> listBook = new ArrayList<>();
         try {
             connectToDataBase();
-            String query = "USE Ejercicio7";
-            pstm = databaseConnection.prepareStatement(query);
-            pstm.execute();
-            query ="SELECT * FROM Books INNER JOIN Authors ON idAuthor WHERE Books.idAuthor = Authors.id;";
+            String query ="SELECT * FROM books INNER JOIN authors ON idAuthor WHERE books.idAuthor = authors.id;";
             pstm = databaseConnection.prepareStatement(query);
             ResultSet dataSet = pstm.executeQuery();
             while (dataSet.next()){
@@ -80,13 +71,9 @@ public class BookModel implements IsCrudable{
         try {
             addableBook = new Book();
             connectToDataBase();
-            String query = "USE Ejercicio7";
+            String query = "SELECT * FROM books WHERE id = ?";
             pstm = databaseConnection.prepareStatement(query);
-            pstm.execute();
-            query = "SELECT * FROM ? WHERE id = ?";
-            pstm = databaseConnection.prepareStatement(query);
-            pstm.setString(1, "Books");
-            pstm.setInt(2, id);
+            pstm.setInt(1, id);
             ResultSet dataSet = pstm.executeQuery();
             while (dataSet.next()) {
                 addableBook.setAuthorID(dataSet.getInt("idAuthor"));
@@ -104,13 +91,9 @@ public class BookModel implements IsCrudable{
 
     public  Object insert(Object objeto){
         Book libro = (Book) objeto;
-
         try{
             connectToDataBase();
-            String query = "USE Ejercicio7";
-            pstm = databaseConnection.prepareStatement(query);
-            pstm.execute();
-            query = "INSERT INTO Books(idAuthor, title, yearPublication, price) VALUES(? , ? , ? , ?)";
+            String query = "INSERT INTO books(idAuthor, title, yearPublication, price) VALUES(? , ? , ? , ?)";
             pstm = databaseConnection.prepareStatement(query);
             pstm.setInt(1,libro.getAuthorID());
             System.out.println(libro.getAuthorID());
@@ -128,10 +111,7 @@ public class BookModel implements IsCrudable{
         Book libro = (Book) objeto;
         try{
             connectToDataBase();
-            String query = "USE Ejercicio7";
-            pstm = databaseConnection.prepareStatement(query);
-            pstm.execute();
-            query = "UPDATE Books SET (idAuthor = ? , title = ? , yearPublication = ?, price = ?)";
+            String query = "UPDATE books SET (idAuthor = ? , title = ? , yearPublication = ?, price = ?)";
             pstm = databaseConnection.prepareStatement(query);
             pstm.setInt(1,libro.getAuthorID());
             pstm.setString(2, libro.getTitle());
@@ -151,16 +131,15 @@ public class BookModel implements IsCrudable{
         Integer id = (Integer) objeto;
         try{
             connectToDataBase();
-            String query = "use Ejercicio7";
-            pstm = databaseConnection.prepareStatement(query);
-            pstm.execute();
-            query = "DELETE * FROM Authors WHERE id = ?";
+            String query = "DELETE FROM books WHERE id = ?";
             pstm = databaseConnection.prepareStatement(query);
             pstm.setInt(1, id);
-            pstm.executeQuery();
-            pstm.close();
-            databaseConnection.close();
-            return true;
+            int rowsAfected = Integer.parseInt(String.valueOf(pstm.executeUpdate()));
+            if (rowsAfected>0){
+                return true;
+            }else{
+                return false;
+            }
         }catch (Exception e){
             System.out.println("Error getting a book by Id : "  + e.getMessage());
         }
@@ -168,7 +147,16 @@ public class BookModel implements IsCrudable{
     }
 
 
+    public void auxiliarLocalDB(){
+        try{
+            String query = "USE Ejercicio7";
+            pstm = databaseConnection.prepareStatement(query);
+            pstm.execute();
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
 
+    }
 
 
 

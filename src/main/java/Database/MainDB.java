@@ -13,8 +13,6 @@ public class MainDB {
 
         closeconnection();
         connectToDataBase();
-        createTableAuthors();
-        createTableBooks();
         closeconnection();
 
 
