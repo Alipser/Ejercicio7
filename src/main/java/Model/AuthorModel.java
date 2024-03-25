@@ -81,10 +81,11 @@ public class AuthorModel implements IsCrudable {
         Author prueba = (Author) objeto;
         try {
             connectToDataBase();
-            String query = "UPDATE authors SET id =" + prueba.getId() + "," + "name = " + prueba.getName() +"," + "nationality = " + prueba.getNationality() + "WHERE id = " + prueba.getId();
-            System.out.println(query);
+            String query = "UPDATE authors SET id = " + prueba.getId() + "," + "name =  ?" +", nationality = ? WHERE id = " + prueba.getId();
             pstm = databaseConnection.prepareStatement(query);
-            pstm.executeQuery();
+            pstm.setString(1, prueba.getName());
+            pstm.setString(2, prueba.getNationality());
+            pstm.execute();
             return true;
         } catch (Exception e) {
             System.out.println("ERROR " + e.getMessage());

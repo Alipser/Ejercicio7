@@ -70,5 +70,39 @@ public class AuthorController {
         authorModel.delete(id);
     }
 
+    public void updateAutores(){
+        this.listarAutores();
+        int id = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter ID to Update"));
+        Author findedAuthor = (Author)  authorModel.getbyId(id);
+
+        JPanel panel = new JPanel(new GridLayout(5, 1)); // 5 filas y 1 columna
+        JTextField name = new JTextField();
+        JTextField nationality = new JTextField();
+
+        panel.add(new JLabel("Autor's name"));
+        panel.add(name);
+        panel.add(new JLabel("Nacionality"));
+        panel.add(nationality);
+
+        name.setText(findedAuthor.getName());
+        nationality.setText(findedAuthor.getNationality());
+
+        int result = JOptionPane.showConfirmDialog(null, panel, "Enter Author's Data", JOptionPane.OK_CANCEL_OPTION);
+
+        if (result == JOptionPane.OK_OPTION) {
+            String inputname = name.getText();
+            String inputnationality = nationality.getText();
+            findedAuthor.setName(inputname);
+            findedAuthor.setNationality(inputnationality);
+            authorModel.update(findedAuthor);
+
+
+
+        }
+
+
+
+    }
+
 
 }
